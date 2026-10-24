@@ -1,0 +1,11 @@
+{
+  "name": "Growly — Small Actions, A Fuller You",
+  "short_name": "Growly",
+  "description": "A calm, garden-inspired personal improvement and habit tracker.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f4eb",
+  "theme_color": "#2f6b4f",
+  "orientation": "portrait-primary",
+  "icons": []
+}

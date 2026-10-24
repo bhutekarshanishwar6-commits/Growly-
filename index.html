@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2f6b4f">
+  <meta name="description" content="Growly — Small Actions, A Fuller You. A personal improvement and habit-building garden.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌿%3C/text%3E%3C/svg%3E">
+  <title>Growly — Small Actions, A Fuller You</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-brand"><div class="brand-mark">🌿</div><div><strong>Growly</strong><span>Small Actions · A Fuller You</span></div></div>
+    <div id="loginPanel">
+      <span class="label">WELCOME BACK</span><h1>Grow your habits.</h1><p>Sign in to continue your personal improvement journey.</p>
+      <form id="loginForm" class="auth-form">
+        <label>Email or Username</label><input id="loginUser" required autocomplete="username" placeholder="Enter username or email">
+        <label>Password</label><input id="loginPass" type="password" required autocomplete="current-password" placeholder="Enter password">
+        <button class="primary-btn auth-submit">Login 🌱</button>
+      </form>
+      <p class="auth-switch">New to Growly? <button type="button" id="showRegisterBtn">Create an account</button></p>
+      <small class="auth-demo">Frontend demo: account details are stored only on this device.</small>
+    </div>
+    <div id="registerPanel" class="hidden">
+      <span class="label">CREATE ACCOUNT</span><h1>Start growing.</h1><p>Create a local Growly account to protect access to this device.</p>
+      <form id="registerForm" class="auth-form">
+        <label>Name</label><input id="registerName" required maxlength="60" placeholder="Your name">
+        <label>Email</label><input id="registerEmail" type="email" required maxlength="100" placeholder="you@example.com">
+        <label>Password</label><input id="registerPass" type="password" required minlength="4" placeholder="At least 4 characters">
+        <button class="primary-btn auth-submit">Create Account 🌱</button>
+      </form>
+      <p class="auth-switch">Already have an account? <button type="button" id="showLoginBtn">Back to login</button></p>
+    </div>
+  </div>
+</div>
+
+  <div id="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">🌿</div>
+        <div><strong>Growly</strong><span>Small Actions<br>A Fuller You</span></div>
+      </div>
+      <nav class="side-nav" aria-label="Primary navigation">
+        <button class="nav-item active" data-page="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-page="gardens"><span>🌿</span> My Gardens</button>
+        <button class="nav-item" data-page="new"><span>＋</span> New Goal</button>
+        <button class="nav-item" data-page="progress"><span>◒</span> Progress</button>
+        <button class="nav-item" data-page="help"><span>?</span> Help & Guide</button>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Profile & Settings</button>
+      </nav>
+      <div class="sidebar-quote">
+        <div class="mini-plant" aria-hidden="true"><i></i><i></i><b></b></div>
+        <p>Consistency<br>grows beautiful<br>things.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="mobile-header">
+        <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="mobile-brand">🌿 <strong>Growly</strong></div>
+        <button class="icon-btn" id="mobileProfileBtn" aria-label="Profile">◉</button>
+      </header>
+
+      <section class="page" id="homePage">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow" id="currentDate">Friday, September 19</p>
+            <h1 id="greeting">Good evening, Grower 🌿</h1>
+            <p class="subtitle" id="subtitle">Another day, another step toward a better you.</p>
+          </div>
+          <div class="quote-card">
+            <span class="quote-icon">“</span>
+            <p id="dailyQuote">Small steps build big tomorrows.</p>
+            <small>— Growly</small>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="card active-garden-card">
+            <div class="section-head">
+              <div>
+                <span class="label">ACTIVE GARDEN</span>
+                <h2 id="activeGardenName">Workout Garden</h2>
+                <p id="activeGardenDesc">A stronger me, one day at a time.</p>
+              </div>
+              <button class="ghost-btn" id="viewActiveBtn">View details →</button>
+            </div>
+            <div class="garden-layout">
+              <div class="garden-visual" id="activeGardenVisual" aria-label="Animated virtual garden"></div>
+              <div class="garden-stats">
+                <div class="stat-row"><span>Day <b id="activeDay">12</b> of <b id="activeDuration">31</b></span><span id="activePercent">39%</span></div>
+                <div class="progress-track"><span id="activeProgressBar" style="width:39%"></span></div>
+                <div class="tiny-stats">
+                  <div><span>🔥</span><b id="activeStreak">5</b><small>Day Streak</small></div>
+                  <div><span>🌱</span><b id="activeRemaining">19</b><small>Days Remaining</small></div>
+                  <div><span>🌼</span><b id="activeFlowers">12</b><small>Flowers</small></div>
+                </div>
+                <button class="primary-btn grow-btn" id="completeBtn">🌼 Add Today's Flower</button>
+              </div>
+            </div>
+          </section>
+
+          <aside class="card stats-card">
+            <div class="section-head"><div><span class="label">YOUR GROWTH</span><h2>At a glance</h2></div></div>
+            <div class="big-stat"><strong id="overallPercent">42%</strong><span>overall consistency</span></div>
+            <div class="mini-stat-grid">
+              <div><b id="totalGoals">4</b><span>Total Goals</span></div>
+              <div><b id="completedDays">43</b><span>Completed Days</span></div>
+              <div><b id="currentStreak">5</b><span>Current Streak</span></div>
+              <div><b id="totalFlowers">43</b><span>Total Flowers</span></div>
+            </div>
+          </aside>
+        </div>
+
+        <section class="section-block">
+          <div class="section-head">
+            <div><span class="label">YOUR GARDENS</span><h2>Keep growing</h2></div>
+            <button class="text-btn" data-page="gardens">See all →</button>
+          </div>
+          <div class="garden-cards" id="dashboardGardens"></div>
+        </section>
+
+        <section class="motivation-banner">
+          <div class="banner-leaves">🌿</div>
+          <div><span class="label">A LITTLE REMINDER</span><h2>You’re planting a better tomorrow.</h2><p>One small action at a time.</p></div>
+          <div class="banner-flower">🌸</div>
+        </section>
+      </section>
+
+      <section class="page hidden" id="gardensPage">
+        <div class="page-heading"><div><span class="label">MY GARDENS</span><h1>All your growing spaces</h1><p>Each goal is a little garden. Give it care, and let the progress show.</p></div><button class="primary-btn" id="newGoalBtn1">＋ Create New Garden</button></div>
+        <div class="filters" id="gardenFilters">
+          <button class="filter active" data-filter="All">All</button><button class="filter" data-filter="Active">Active</button><button class="filter" data-filter="Completed">Completed</button><button class="filter" data-filter="Study">Study</button><button class="filter" data-filter="Fitness">Fitness</button><button class="filter" data-filter="Coding">Coding</button><button class="filter" data-filter="Reading">Reading</button><button class="filter" data-filter="Mindfulness">Mindfulness</button>
+        </div>
+        <div class="all-gardens-grid" id="allGardens"></div>
+      </section>
+
+      <section class="page hidden" id="progressPage">
+        <div class="page-heading"><div><span class="label">PROGRESS</span><h1>Your growth in numbers</h1><p>Simple analytics from the actions you have completed.</p></div><button class="primary-btn" id="generatePdfBtn">Generate Improvement PDF</button></div>
+        <div class="metric-grid" id="metrics"></div>
+        <div class="charts-grid">
+          <section class="card chart-card"><div class="section-head"><div><span class="label">LAST 7 DAYS</span><h2>Weekly Consistency</h2></div></div><div class="bar-chart" id="weeklyChart"></div></section>
+          <section class="card chart-card"><div class="section-head"><div><span class="label">BY GARDEN</span><h2>Garden Growth</h2></div></div><div class="donut-wrap"><div class="donut" id="donut"><div><b id="donutValue">42%</b><span>overall</span></div></div><div class="legend" id="donutLegend"></div></div></section>
+          <section class="card chart-card"><div class="section-head"><div><span class="label">COMPLETION</span><h2>Goal Completion</h2></div></div><div id="goalBars" class="goal-bars"></div></section>
+          <section class="card chart-card"><div class="section-head"><div><span class="label">MONTHLY</span><h2>Monthly Progress</h2></div></div><div class="line-chart" id="monthlyChart"></div></section>
+        </div>
+      </section>
+
+
+
+      <section class="page hidden" id="helpPage">
+        <div class="page-heading">
+          <div><span class="label">HELP & GUIDE</span><h1>How to use Growly</h1><p>A simple guide to help you turn small daily actions into visible progress.</p></div>
+        </div>
+        <div class="help-grid">
+          <section class="card help-card">
+            <div class="help-number">1</div><div><h2>Create your goal</h2><p>Open <b>New Goal</b>, give your garden a name, choose a category, set the duration and write your daily target.</p></div>
+          </section>
+          <section class="card help-card">
+            <div class="help-number">2</div><div><h2>Complete one small action</h2><p>Open your active garden and tap <b>Add Today's Flower</b> whenever you complete your daily action. Your streak, flowers and progress update automatically.</p></div>
+          </section>
+          <section class="card help-card">
+            <div class="help-number">3</div><div><h2>Check your improvement</h2><p>Use <b>Progress</b> to see consistency, completed days, streaks and garden growth. Open any garden for its calendar and improvement points.</p></div>
+          </section>
+          <section class="card help-card">
+            <div class="help-number">4</div><div><h2>Keep your profile updated</h2><p>In <b>Profile & Settings</b>, add your age, gender, address, occupation and other details. These stay on your device in localStorage.</p></div>
+          </section>
+          <section class="card help-card">
+            <div class="help-number">5</div><div><h2>Backup your data</h2><p>Use <b>↓ Export Progress</b> to save a JSON backup. Use <b>↑ Import Progress</b> to restore a Growly backup later.</p></div>
+          </section>
+          <section class="card help-card">
+            <div class="help-number">6</div><div><h2>Generate your improvement PDF</h2><p>Go to Progress and choose <b>Generate Improvement PDF</b>. Your profile and recorded progress are prepared as a printable PDF report.</p></div>
+          </section>
+        </div>
+        <section class="card help-tip"><span>🌱</span><div><b>Remember:</b> Growly is designed around consistency, not perfection. A small completed action is still progress.</div></section>
+      </section>
+      <section class="page hidden" id="settingsPage">
+        <div class="page-heading"><div><span class="label">SETTINGS</span><h1>Make Growly yours</h1><p>Manage your profile, appearance and demo data.</p></div></div>
+        <div class="settings-grid">
+          <section class="card settings-card profile-card">
+            <span class="label">PROFILE</span><h2>Your grower profile</h2>
+            <p class="settings-note">Add details to make your improvement report more complete. All fields are optional except your display name.</p>
+            <div class="profile-form-grid">
+              <div><label class="field-label" for="nameInput">Full Name</label><input id="nameInput" type="text" maxlength="60" placeholder="Your full name"></div>
+              <div><label class="field-label" for="ageInput">Age</label><input id="ageInput" type="number" min="1" max="120" placeholder="Age"></div>
+              <div><label class="field-label" for="genderInput">Gender</label><select id="genderInput"><option value="">Prefer not to say</option><option>Male</option><option>Female</option><option>Non-binary</option><option>Other</option></select></div>
+              <div><label class="field-label" for="workInput">Working As</label><input id="workInput" type="text" maxlength="60" placeholder="Student / Developer / etc."></div>
+              <div class="full"><label class="field-label" for="addressInput">Address</label><textarea id="addressInput" rows="2" maxlength="180" placeholder="City, area or address"></textarea></div>
+              <div><label class="field-label" for="emailInput">Email</label><input id="emailInput" type="email" maxlength="100" placeholder="name@example.com"></div>
+              <div><label class="field-label" for="phoneInput">Phone</label><input id="phoneInput" type="tel" maxlength="20" placeholder="Phone number"></div>
+              <div class="full"><label class="field-label" for="aboutInput">About / Main Improvement Focus</label><textarea id="aboutInput" rows="3" maxlength="250" placeholder="What are you trying to improve?"></textarea></div>
+            </div>
+            <div class="profile-actions"><button class="primary-btn" id="saveProfileBtn">Save Profile 🌿</button><button class="secondary-btn" id="generatePdfBtn2">Generate Improvement PDF</button><button class="secondary-btn" id="logoutBtn">Log Out</button></div>
+          </section>
+          <section class="card settings-card reminder-card">
+            <span class="label">DAILY REMINDER</span><h2>Time to plant your habit 🌱</h2>
+            <p class="settings-note">Set a daily reminder to complete today’s small action and grow your plant. Keep Growly open for in-app reminders; browser notifications are optional.</p>
+            <div class="reminder-controls">
+              <div><label class="field-label" for="reminderTime">Reminder time</label><input id="reminderTime" type="time" value="19:00"></div>
+              <label class="setting-row reminder-switch"><div><b>Enable reminder</b><small>Remind me every day.</small></div><label class="switch"><input type="checkbox" id="reminderToggle"><span></span></label></label>
+            </div>
+            <div class="profile-actions"><button class="primary-btn" id="saveReminderBtn">Save Reminder 🔔</button><button class="secondary-btn" id="testReminderBtn">Test Reminder</button></div>
+            <p class="reminder-status" id="reminderStatus">Reminder is off.</p>
+          </section>
+          <section class="card settings-card"><span class="label">APPEARANCE</span><h2>Choose your atmosphere</h2>
+            <div class="setting-row"><div><b>Dark mode</b><small>Use a calm, dark green interface.</small></div><label class="switch"><input type="checkbox" id="themeToggle"><span></span></label></div>
+            <div class="setting-row"><div><b>Reduce animations</b><small>Limit movement throughout the interface.</small></div><label class="switch"><input type="checkbox" id="motionToggle"><span></span></label></div>
+          </section>
+          <section class="card settings-card"><span class="label">YOUR DATA</span><h2>Backup & reset</h2>
+            <div class="action-list"><button class="secondary-btn" id="exportBtn">↓ Export Progress</button><button class="secondary-btn" id="importBtn">↑ Import Progress</button><button class="danger-btn" id="resetAllBtn">Reset All Progress</button><input type="file" id="importFile" accept=".json,application/json" hidden></div>
+          </section>
+          <section class="card settings-card about-card"><span class="label">ABOUT GROWLY</span><h2>Small Actions, A Fuller You.</h2><p>Growly turns everyday consistency into a visual garden. This frontend demo uses localStorage only — no account, backend or API is required.</p><div class="version-pill">FSJ Project · Frontend Demo</div></section>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+      <button class="nav-item active" data-page="home"><span>⌂</span>Home</button>
+      <button class="nav-item" data-page="gardens"><span>🌿</span>Gardens</button>
+      <button class="fab-nav" data-page="new" aria-label="Create goal">＋</button>
+      <button class="nav-item" data-page="progress"><span>◒</span>Progress</button>
+      <button class="nav-item" data-page="settings"><span>⚙</span>Settings</button>
+    </nav>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <div class="welcome-overlay hidden" id="welcomeOverlay">
+    <div class="welcome-card">
+      <div class="welcome-illustration">🌱</div><span class="label">WELCOME TO GROWLY</span>
+      <h1>Small actions.<br><em>Beautiful growth.</em></h1>
+      <p>What should we call you?</p>
+      <input id="welcomeName" type="text" maxlength="30" placeholder="Your name" autocomplete="name">
+      <button class="primary-btn" id="startGrowing">Start Growing 🌱</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
